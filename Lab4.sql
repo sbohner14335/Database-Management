@@ -33,8 +33,8 @@ WHERE cid IN (SELECT cid
 	      FROM orders
 	      WHERE pid IN (SELECT pid
 			    FROM products
-			    WHERE pid = 'p01'
-			    OR pid = 'p07'));
+			    WHERE pid IN ('p07', 'p01')));
+
 
 -- 5. Get the ids of products not ordered by any customers who placed an order with 
 --    agent a07 in pid from highest to lowest.
@@ -59,7 +59,7 @@ WHERE cid IN (SELECT cid
 			    OR city = 'New York'));
 
 -- 7. Get all customers who have the same discount as that of any customers in Dallas or London.
-SELECT *
+SELECT name
 FROM customers
 WHERE discount IN (SELECT discount
 		   FROM customers
@@ -78,10 +78,10 @@ WHERE discount IN (SELECT discount
 
 
 
-SELECT * FROM orders
+SELECT * FROM orders;
 
-SELECT * FROM agents
+SELECT * FROM agents;
 
-SELECT * FROM customers
+SELECT * FROM customers;
 
-SELECT * FROM products
+SELECT * FROM products;
