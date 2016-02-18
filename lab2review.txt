@@ -1,0 +1,33 @@
+9 pts
+
+1. 
+
+Evidence looks ok.
+
+Good organization of screenshots.
+
+
+2.
+
+Minimum knowledge of the terms primary key, candidate key, and superkey. Please
+review this concepts for the mid-term and final.
+
+The distinction between a superkey and candidate key is deficient. Remember
+that a candidate key is the minimum set of superkeys. 
+
+
+3.
+
+Perhaps email could be nullable? There might be some (old?) human beings that
+have no email addresses.
+
+
+4.
+
+There are some typos in the responses. E.g., ``... in order if a ...''.
+
+The ``frist normal form'' has nothing to do with redundancy. Please check
+your notes and the textbook Chapter 6.1.
+
+
+- Dr. Rivas
