@@ -28,12 +28,12 @@ WHERE cid IN (SELECT cid
 
 -- 4. Get the ids of customers who ordered both product p01 and p07.
 SELECT cid
-FROM customers
-WHERE cid IN (SELECT cid
-	      FROM orders
-	      WHERE pid IN (SELECT pid
-			    FROM products
-			    WHERE pid IN ('p07', 'p01')));
+FROM orders
+WHERE pid = 'p07'
+  INTERSECT
+SELECT cid
+FROM orders
+WHERE pid = 'p01';
 
 
 -- 5. Get the ids of products not ordered by any customers who placed an order with 
