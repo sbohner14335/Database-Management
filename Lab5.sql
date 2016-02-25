@@ -6,13 +6,15 @@ ON o.aid = a.aid
 AND o.cid = 'c002';
 
 -- 2. Show the ids of products (pid) ordered through any agent who makes at least one order
---    for a customer in 'Dallas', sorted by pid from highest to lowest. Use joins. *
-SELECT o.pid
+--    for a customer in 'Dallas' (c002 and c003), sorted by pid from highest to lowest. Use joins.
+SELECT DISTINCT o.pid
 FROM orders o
 INNER JOIN agents a
-ON 
-
-SELECT 
+ON o.aid = a.aid
+INNER JOIN customers c
+ON c.cid = o.cid
+WHERE c.city = 'Dallas'
+ORDER BY pid DESC;
 
 
 SELECT cid
@@ -23,21 +25,25 @@ WHERE city = 'Dallas';
 -- 3. Show the names of customers who have never placed an order. Use subquery.
 SELECT c.name
 FROM customers c
-WHERE cid NOT IN (SELECT o.cid
-		  FROM orders o, customers c
-		  WHERE o.cid != c.cid);
+WHERE cid NOT IN (SELECT cid
+		  FROM orders);
 
--- 4. Show the names of customers who have never placed an order. Outer join. *
+-- 4. Show the names of customers who have never placed an order. Outer join.
 SELECT c.name
 FROM customers c
-RIGHT OUTER JOIN orders o
-ON o.cid = c.cid;
+LEFT JOIN orders o
+ON c.cid = o.cid
+WHERE o.ordno IS NULL;
 
 -- 5. Show the names of customers who placed at least one order through an agent in their
---    own city, along with those agent's names. *
-SELECT c.name, a.name
-FROM customers c, agents a
-WHERE c.city = a.city    
+--    own city, along with those agent's names.
+SELECT DISTINCT c.name, a.name
+FROM customers c
+INNER JOIN orders o
+ON o.cid = c.cid
+INNER JOIN agents a
+ON a.aid = o.aid
+WHERE c.city = a.city;
 
 
 -- 6. Show the names of customers and agents living in the same city, along with the name
@@ -56,11 +62,3 @@ WHERE c.city IN (SELECT city
 		 GROUP BY city
 		 ORDER BY count(pid) ASC
 		 LIMIT 1);
-
-SELECT * FROM orders;
-
-SELECT * FROM customers;
-
-SELECT * FROM agents;
-
-SELECT * FROM products;
