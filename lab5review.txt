@@ -1,0 +1,35 @@
+9 pts
+
+Correct output for all queries
+Correct queries
+Correct SQL statements
+SQL statements are somewhat readable
+
+Recommendations: 
+ To improve your readability, write queries like this:
+  SELECT DISTINCT pid
+  FROM orders
+  WHERE aid IN (SELECT aid
+                FROM orders
+                WHERE cid IN (SELECT cid
+                              FROM customers
+                              WHERE city = 'Dallas'))
+  ORDER BY pid DESC;     -- < notice the correct indentation here
+
+
+
+In general: 
+
+- You must indent your queries to improve readability!
+
+- PLEASE only include your queries! You an additional query that was not
+  required. 
+
+- Please do not use tabs for indentation. Use spaces instead.
+
+- Very good!
+
+- Make sure your name is somewhere in the .sql file.
+
+
+- Dr. Rivas
